@@ -67,12 +67,12 @@ class CalendarDay {
 	}
 
 	protected function getHourEvents(): array {
-		$array = [];
+		$arr = [];
 		foreach ($this->getEvents() as $event) {
-			$array[$event->getDate()->format('G')][] = $event;
+			$arr[$event->getDate()->format('G')][] = $event;
 		}
 
-		return $array;
+		return $arr;
 	}
 
 	/**

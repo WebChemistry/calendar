@@ -46,9 +46,10 @@ class CalendarWeek {
 	/**
 	 * @return CalendarDay[]
 	 */
-	public function getDays(): \Generator {
+	public function getDays(): array {
 		$period = new \DatePeriod($this->start, new \DateInterval('P1D'), $this->end);
 
+		$arr = [];
 		foreach ($period as $day) {
 			$calendar = new CalendarDay($day);
 
@@ -56,8 +57,10 @@ class CalendarWeek {
 				$calendar->setEvents($this->events);
 			}
 
-			yield $calendar;
+			$arr[] = $calendar;
 		}
+
+		return $arr;
 	}
 
 }

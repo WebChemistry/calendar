@@ -69,9 +69,10 @@ class CalendarMonth {
 	/**
 	 * @return CalendarWeek[]
 	 */
-	public function getWeeks(): \Generator {
+	public function getWeeks(): array {
 		$period = new \DatePeriod($this->start, new \DateInterval('P1W'), $this->end);
 
+		$arr = [];
 		foreach ($period as $week) {
 			$calendar = new CalendarWeek($week);
 
@@ -79,8 +80,10 @@ class CalendarMonth {
 				$calendar->setEvents($this->events);
 			}
 
-			yield $calendar;
+			$arr[] = $calendar;
 		}
+
+		return $arr;
 	}
 
 }
