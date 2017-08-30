@@ -7,7 +7,11 @@ namespace WebChemistry\Calendar;
 class Utils {
 
 	public static function startOfWeek(\DateTime $date): void {
-		$date->modify('-' . ((int) $date->format('w') - 1) . ' days');
+		if ($date->format('w') === '0') {
+			$date->modify('- 6 days');
+		} else if ($date->format('w') !== '1') {
+			$date->modify('-' . ((int) $date->format('w') - 1) . ' days');
+		}
 	}
 
 	public static function resetTime(\DateTime $date): void {
